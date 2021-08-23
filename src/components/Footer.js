@@ -1,10 +1,20 @@
 import React, { Component } from 'react'
+import { Toast, ToastBody, ToastHeader} from 'reactstrap'
 
 class Footer extends Component{
   render(){
     return(
       <>
-        <h3>This is a footer</h3>
+        <div className="p-3 bg-info my-2 rounded">
+        <Toast>
+          <ToastHeader>
+            Created by
+          </ToastHeader>
+          <ToastBody>
+            Trey Rogers, and Kelen Yafuso
+          </ToastBody>
+        </Toast>
+      </div>
       </>
     )
   }

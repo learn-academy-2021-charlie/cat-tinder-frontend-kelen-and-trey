@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Col, Container, Row } from 'reactstrap'
+import {withRouter} from 'react-router-dom'
 
 class Header extends Component{
   render(){
@@ -30,4 +31,4 @@ class Header extends Component{
 
 }
 
-export default Header
+export default withRouter (Header)
