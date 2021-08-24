@@ -2,18 +2,14 @@
 // import {createMemoryHistory} from 'history'
 // import {Router} from 'react-router-dom'
 import React from 'react'
-// Imports Enzyme testing and deconstructs Shallow into our test file.
 import Enzyme, { shallow } from 'enzyme'
-// Imports Adapter utilizing the latest react version into our test file so we can run a testing render on any component we may need.
 import Adapter from 'enzyme-adapter-react-16'
- // Imports in the component we are going to be testing.
 import App from './App';
 import Home from './pages/Home'
 import CatIndex from './pages/CatIndex'
 import CatShow from './pages/CatShow'
 import CatNew from './pages/CatNew'
 import CatEdit from './pages/CatEdit'
-// import { MemoryRouter } from "react-router-dom"
 Enzyme.configure({ adapter: new Adapter() })
 
 
@@ -75,13 +71,3 @@ describe('app does the rendering', () => {
 
 
 
-// describe('Renders header and footer', () => {
-  // it('renders header', () => {
-  //   const renderedApp = shallow(<App/>)
-  //   // console.log(renderedApp.find('Header').debug())
-  //   const renderedHeader = renderedApp.find('Header')
-
-  //   expect(renderedApp.find('Header').length).toEqual(1);
-  // })
-
-// });
