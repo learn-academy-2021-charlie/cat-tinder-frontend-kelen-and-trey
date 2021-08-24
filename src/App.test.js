@@ -10,6 +10,7 @@ import CatIndex from './pages/CatIndex'
 import CatShow from './pages/CatShow'
 import CatNew from './pages/CatNew'
 import CatEdit from './pages/CatEdit'
+import cats from './mockCats'
 Enzyme.configure({ adapter: new Adapter() })
 
 
@@ -32,7 +33,7 @@ describe('app does the rendering', () => {
   it('provides a route/catindex to the CatIndex component', () => {
     const renderedApp = shallow(<App/>)
     const renderedCatIndexRoute = renderedApp.find('[path="/catindex"]')
-    expect(renderedCatIndexRoute.props().component).toEqual(CatIndex);
+    expect(renderedCatIndexRoute.props().render()).toEqual(<CatIndex cats={cats}/>);
   })
   it('provides a route/catshow/:id to the CatShow component', () => {
     const renderedApp = shallow(<App/>)
