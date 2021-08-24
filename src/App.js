@@ -24,9 +24,9 @@ class App extends Component{
   }
   render(){
     return (
-      
+      <>
+        <Header/>
         <Router>
-          <Header/>
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/catindex' component={CatIndex}/>
@@ -35,8 +35,9 @@ class App extends Component{
             <Route path='/catedit/:id' component={CatEdit}/>
             <Route component={NotFound}/>
           </Switch>
-          <Footer/>
         </Router>
+        <Footer/>
+      </>
     )
   }
 }

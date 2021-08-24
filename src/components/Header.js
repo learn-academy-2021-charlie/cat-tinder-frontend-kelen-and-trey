@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Button, Col, Container, Row } from 'reactstrap'
-import {withRouter} from 'react-router-dom'
 
 class Header extends Component{
   render(){
@@ -9,17 +8,17 @@ class Header extends Component{
         <Container>
           <Row>
             <Col>
-              <Button color='info' onClick={() => this.props.history.push('/')}>
+              <Button color='info' >
                 Home
               </Button>
             </Col>
             <Col>
-              <Button color='info' onClick={() => this.props.history.push('/catindex')}>
+              <Button color='info' >
                 Index
               </Button>
             </Col>
             <Col>
-              <Button color='info' onClick={() => this.props.history.push('/catnew')}>
+              <Button color='info' >
                 Add a New Cat
               </Button>
             </Col>
@@ -31,4 +30,4 @@ class Header extends Component{
 
 }
 
-export default withRouter (Header)
+export default Header
