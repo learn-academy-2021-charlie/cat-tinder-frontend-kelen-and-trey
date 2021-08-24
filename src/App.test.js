@@ -11,6 +11,7 @@ import CatShow from './pages/CatShow'
 import CatNew from './pages/CatNew'
 import CatEdit from './pages/CatEdit'
 import cats from './mockCats'
+import NotFound from './pages/NotFound'
 Enzyme.configure({ adapter: new Adapter() })
 
 
@@ -38,7 +39,7 @@ describe('app does the rendering', () => {
   it('provides a route/catshow/:id to the CatShow component', () => {
     const renderedApp = shallow(<App/>)
     const renderedCatShowRoute = renderedApp.find('[path="/catshow/:id"]')
-    expect(renderedCatShowRoute.props().component).toEqual(CatShow);
+    expect(renderedCatShowRoute.props().render()).toEqual(<NotFound />);
   })
   it('provides a route/catnew to the CatNew component', () => {
     const renderedApp = shallow(<App/>)

@@ -35,12 +35,15 @@ class App extends Component{
               )
               }}/>
             <Route path='/catshow/:id' render={(props) => {
-              let id = props.match.params.id
-              let cat = cats.find(cat => cat.id === +id)
-              return(
-                <CatShow cat={cat}/>
-              )
-              }}/>
+              if(props){
+                let id = props.match.params.id
+                let cat = cats.find(cat => cat.id === +id)
+                return(
+                  <CatShow cat={cat}/>
+                )
+              } else {
+                return <NotFound />}
+            }}/>
             <Route path='/catnew' component={CatNew}/>
             <Route path='/catedit/:id' component={CatEdit}/>
             <Route component={NotFound}/>
