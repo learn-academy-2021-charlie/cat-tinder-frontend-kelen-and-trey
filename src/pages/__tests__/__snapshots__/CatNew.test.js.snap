@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`new cat form updates the age when given an age event 1`] = `ShallowWrapper {}`;
+
+exports[`new cat form updates the age when the user types a number into the age field 1`] = `ShallowWrapper {}`;
+
+exports[`new cat form updates the enjoys value when given an enjoys event 1`] = `ShallowWrapper {}`;
+
+exports[`new cat form updates the name when given a name event 1`] = `ShallowWrapper {}`;
+
+exports[`new cat form updates the name when the user types in the name field 1`] = `ShallowWrapper {}`;

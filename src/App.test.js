@@ -2,7 +2,7 @@
 // import {createMemoryHistory} from 'history'
 // import {Router} from 'react-router-dom'
 import React from 'react'
-import Enzyme, { shallow } from 'enzyme'
+import Enzyme, { mount, shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import App from './App';
 import Home from './pages/Home'
@@ -12,6 +12,8 @@ import CatNew from './pages/CatNew'
 import CatEdit from './pages/CatEdit'
 import cats from './mockCats'
 import NotFound from './pages/NotFound'
+import { MemoryRouter } from 'react-router'
+import { Route } from 'react-router-dom'
 Enzyme.configure({ adapter: new Adapter() })
 
 
@@ -19,6 +21,7 @@ Enzyme.configure({ adapter: new Adapter() })
 
 
 describe('app does the rendering', () => {
+  let handleSubmit = jest.fn()
   it('renders header', () => {
     const renderedApp = shallow(<App/>)
     // console.log(renderedApp.find('Header').debug())
@@ -44,7 +47,7 @@ describe('app does the rendering', () => {
   it('provides a route/catnew to the CatNew component', () => {
     const renderedApp = shallow(<App/>)
     const renderedCatNewRoute = renderedApp.find('[path="/catnew"]')
-    expect(renderedCatNewRoute.props().component).toEqual(CatNew);
+    expect(renderedCatNewRoute.props().render()).toEqual(<CatNew handleSubmit={expect.any(Function)}/>);
   })
   it('provides a route/catedit/:id to the CatEdit component', () => {
     const renderedApp = shallow(<App/>)
@@ -52,15 +55,12 @@ describe('app does the rendering', () => {
     expect(renderedCatEditRoute.props().component).toEqual(CatEdit);
   })
   // it('provides a route/notfound to the NotFound component', () => {
-  //   const history = createMemoryHistory()
-  //   history.push("/somejibberish")
-  //   const component = (
-  //     <Router history={history}>
+  //   const component = mount(
+  //     <MemoryRouter initialEntries={['/undefined']}>
   //       <App/>
-  //     </Router>
+  //     </MemoryRouter>
   //   )
-  //   render(component)
-  //   expect(screen.getByTestId('404')).toBeInTheDocument();
+  //   expect(component.find(NotFound)).toHaveLength(1)
   // })
 
 });
