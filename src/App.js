@@ -22,6 +22,14 @@ class App extends Component{
       cats,
     }
   }
+
+  handleSubmit = newCat => {
+    this.setState({
+      cats: [...cats, newCat]
+    })
+    console.log(this.state.cats)
+  }
+
   render(){
     return (
       <>
@@ -44,7 +52,11 @@ class App extends Component{
               } else {
                 return <NotFound />}
             }}/>
-            <Route path='/catnew' component={CatNew}/>
+            <Route path='/catnew' render={() => {
+              return(
+                <CatNew handleSubmit={this.handleSubmit}/>
+              )
+            }}/>
             <Route path='/catedit/:id' component={CatEdit}/>
             <Route component={NotFound}/>
           </Switch>
