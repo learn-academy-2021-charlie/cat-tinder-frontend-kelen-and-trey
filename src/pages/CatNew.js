@@ -21,7 +21,7 @@ class CatNew extends Component{
     this.setState({cat: form})
   }
 
-  handleSubmit = e => {
+  handleSubmit = () => {
     this.props.handleSubmit(this.state.cat)
     this.setState({submitted:true})
   }
