@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`edit cat form updates the age when given an age event 1`] = `ShallowWrapper {}`;
+
+exports[`edit cat form updates the enjoys value when given an enjoys event 1`] = `ShallowWrapper {}`;
+
+exports[`edit cat form updates the name when given a name event 1`] = `ShallowWrapper {}`;

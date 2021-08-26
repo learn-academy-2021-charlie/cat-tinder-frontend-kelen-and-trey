@@ -19,7 +19,7 @@ const useStyles = theme => ({
 });
 const CatIndex = ({history, classes}) => {
   const appContext = useContext(AppContext)
-  const cats = appContext.cats
+  const cats = appContext.state.cats
   return(
     <Container>
       <Container className={classes.listContainer} data-testid='index-container'>
