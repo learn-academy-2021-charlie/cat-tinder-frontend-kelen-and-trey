@@ -7,15 +7,6 @@ import {
 import AppContext from '../context/AppContext'
 
 const useStyles = theme => ({
-  root: {
-    marginLeft: 10,
-    marginRight: 10,
-    justifySelf: 'center'
-  },
-  heading: {
-    fontSize: "1rem",
-    fontWeight: theme.typography.fontWeightRegular
-  },
   listContainer: {
     display: "flex",
     justifyContent: "center",
@@ -24,16 +15,6 @@ const useStyles = theme => ({
     paddingTop: '50px',
     width: '100%',
   },
-  media: {
-    height: 250,
-    width: 400,
-  },
-  catContainer: {
-    justifySelf: 'flex-start',
-    width: '30%',
-    alignSelf: 'left',
-    paddingBottom: '50px'
-  }
 });
 const CatIndex = ({classes}) => {
   const appContext = useContext(AppContext)
