@@ -21,7 +21,7 @@ const CatIndex = ({classes}) => {
   const cats = appContext.cats
   return(
     <Container>
-      <Container className={classes.listContainer}>
+      <Container className={classes.listContainer} data-testid='index-container'>
         {cats && cats.map((cat, i) => <CatCard id={cat.id} key={i} name={cat.name} index={i} age={cat.age} enjoys={cat.enjoys}/>
         ) }
       </Container>

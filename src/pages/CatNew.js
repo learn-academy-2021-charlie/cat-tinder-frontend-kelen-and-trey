@@ -27,17 +27,17 @@ const CatNew = props => {
       <Form>
         <FormGroup>
           <Label for="name">Name</Label>
-          <Input name="name" id="nameNew" onChange={handleChange}/>
+          <Input name="name" id="nameNew" data-testid='name-input' onChange={handleChange}/>
         </FormGroup>
         <FormGroup>
           <Label for="age">Age</Label>
-          <Input type="number" name="age" id="ageNew" onChange={handleChange}/>
+          <Input type="number" name="age" data-testid='age-input' id="ageNew" onChange={handleChange}/>
         </FormGroup>
         <FormGroup>
           <Label for="enjoys">Enjoys</Label>
-          <Input name="enjoys" id="enjoysNew" onChange={handleChange}/>
+          <Input name="enjoys" id="enjoysNew" data-testid='enjoys-input' onChange={handleChange}/>
         </FormGroup>
-        <Button onClick={submitCat}>Submit</Button>
+        <Button onClick={submitCat} data-testid='submit-button'>Submit</Button>
       </Form>
       {submitted && <Redirect to="/catindex"/>}
     </>

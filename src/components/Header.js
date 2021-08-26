@@ -16,7 +16,7 @@ class Header extends Component{
     const { classes } = this.props
     return(
       <>
-        <Container className={classes.headerContainer}>
+        <Container data-testid='header-container' className={classes.headerContainer}>
           <Row>
             <Col>
               <NavLink to='/'>

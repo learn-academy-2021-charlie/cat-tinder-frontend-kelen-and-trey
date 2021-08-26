@@ -22,14 +22,6 @@ const useStyles = theme => ({
     fontSize: "1rem",
     fontWeight: theme.typography.fontWeightRegular
   },
-  listContainer: {
-    display: "flex",
-    justifyContent: "center",
-    flexFlow: "row wrap",
-    alignContent: 'space-around',
-    paddingTop: '50px',
-    width: '100%',
-  },
   media: {
     height: 250,
     width: 400,
