@@ -16,27 +16,32 @@ import AppContext from '../context/AppContext'
 
 const useStyles = theme => ({
   root: {
-      marginLeft: 10,
-      marginRight: 10,
+    marginLeft: 10,
+    marginRight: 10,
     justifySelf: 'center'
   },
   heading: {
-      fontSize: "1rem",
-      fontWeight: theme.typography.fontWeightRegular
+    fontSize: "1rem",
+    fontWeight: theme.typography.fontWeightRegular
   },
   listContainer: {
-    maxWidth: "500px",
+    // maxWidth: "500px",
     display: "flex",
     justifyContent: "center",
-    flexFlow: "row",
-    alignContent: 'space-around'
+    flexFlow: "row wrap",
+    alignContent: 'space-around',
+    paddingTop: '50px',
+    width: '100%',
   },
   media: {
     height: 250,
     width: 400,
   },
   catContainer: {
-    justifySelf: 'flex-start'
+    justifySelf: 'flex-start',
+    width: '30%',
+    alignSelf: 'left',
+    paddingBottom: '50px'
   }
 });
 const CatIndex = ({classes}) => {
@@ -44,7 +49,6 @@ const CatIndex = ({classes}) => {
   const cats = appContext.cats
   return(
     <Container>
-      <h2>CatIndex component</h2>
       <Container className={classes.listContainer}>
         {cats && cats.map((cat, i) => {
           return(

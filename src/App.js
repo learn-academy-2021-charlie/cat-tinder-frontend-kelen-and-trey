@@ -27,9 +27,8 @@ class App extends Component{
 
   handleSubmit = newCat => {
     this.setState({
-      cats: [...cats, newCat]
+      cats: [...this.state.cats, newCat]
     })
-    console.log(this.state.cats)
   }
 
   render(){

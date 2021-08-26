@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState, Component } from 'react'
 import { Button, Form, Label, Input, FormGroup } from 'reactstrap'
 import { Redirect } from 'react-router-dom'
 
