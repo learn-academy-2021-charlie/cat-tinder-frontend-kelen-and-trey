@@ -8,7 +8,7 @@ import { createMemoryHistory } from 'history'
 
 describe('when CatIndex renders', () => {
   const component = (
-    <AppContext.Provider value={{cats}}>
+    <AppContext.Provider value={{state: {cats}}}>
       <Router history={createMemoryHistory()}>
         <CatIndex/>
       </Router>

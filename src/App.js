@@ -31,11 +31,20 @@ class App extends Component{
     })
   }
 
+  handleNewCat = (newCat, index) => {
+    let cats = this.state.cats
+    cats[index] = newCat
+    this.setState({
+      cats
+    })
+  }
+
   render(){
+    const contextValue = {state: this.state, handleSubmit: this.handleSubmit, handleNewCat: this.handleNewCat}
     return (
       <>
         <Router>
-          <AppContext.Provider value={this.state}>
+          <AppContext.Provider value={contextValue}>
             <Header/>
             <Switch>
               <Route exact path='/' component={Home} />
