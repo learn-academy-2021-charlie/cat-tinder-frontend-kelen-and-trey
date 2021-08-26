@@ -1,12 +1,9 @@
-import React, { useContext } from 'react'
-import AppContext from '../context/AppContext.js'
+import React from 'react'
 
 const Home = () => {
-  const appContext = useContext(AppContext)
   return(
     <>
       <h1>Home Page</h1>
-      <h3>{appContext.app}</h3>
     </>
   )
 }

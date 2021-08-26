@@ -1,15 +1,7 @@
 import React, { useContext } from 'react'
-import { NavLink } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles';
-import  catImage from '../assets/cat.jpeg'
+import CatCard from '../components/CatCard'
 import {
-  Card,
-  CardActionArea,
-  CardActions,
-  CardMedia,
-  CardContent,
-  Typography,
-  // Button,
   Container
 } from '@material-ui/core'
 import AppContext from '../context/AppContext'
@@ -25,7 +17,6 @@ const useStyles = theme => ({
     fontWeight: theme.typography.fontWeightRegular
   },
   listContainer: {
-    // maxWidth: "500px",
     display: "flex",
     justifyContent: "center",
     flexFlow: "row wrap",
@@ -50,49 +41,11 @@ const CatIndex = ({classes}) => {
   return(
     <Container>
       <Container className={classes.listContainer}>
-        {cats && cats.map((cat, i) => {
-          return(
-            <Container maxWidth="sm" data-testid= 'cat-profile' key={i} className={classes.catContainer}>
-            <Card className={classes.root}>
-              <CardActionArea>
-                <CardMedia
-                  component="img"
-                  className={classes.media}
-                  src={catImage}
-                  title="Cute Orange Cat"
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    {cat.name}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary" component="p">
-                    Enjoys {cat.enjoys}
-                  </Typography>
-                  <Typography>
-                  {cat.name} is {cat.age} years old
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-              <CardActions>
-              <NavLink to={`/catShow/${cat.id}`}>Show {cat.name}'s details</NavLink>
-                {/* <Button size="small" color="primary"> */}
-                {/*   Learn More */}
-                {/* </Button> */}
-              </CardActions>
-            </Card>
-
-            {/* <div key={cat.id}>
-              <NavLink to={`/catShow/${cat.id}`}>Show {cat.name}'s details</NavLink>
-              <h2>{cat.name} is {cat.age} years old.</h2>
-              <h3>Enjoys {cat.enjoys}.</h3>
-            </div> */}
-          </Container>
-          )
-        }) }
+        {cats && cats.map((cat, i) => <CatCard id={cat.id} key={i} name={cat.name} index={i} age={cat.age} enjoys={cat.enjoys}/>
+        ) }
       </Container>
     </Container>
   )
 }
 
-// export default CatIndex
 export default withStyles(useStyles) (CatIndex)
