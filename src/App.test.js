@@ -1,8 +1,8 @@
-// import {render, screen} from '@testing-library/react'
-// import {createMemoryHistory} from 'history'
-// import {Router} from 'react-router-dom'
+import {render, screen} from '@testing-library/react'
+import {createMemoryHistory} from 'history'
+import {Router} from 'react-router-dom'
 import React from 'react'
-import Enzyme, { mount, shallow } from 'enzyme'
+import Enzyme, { shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import App from './App';
 import Home from './pages/Home'
@@ -10,39 +10,42 @@ import CatIndex from './pages/CatIndex'
 import CatShow from './pages/CatShow'
 import CatNew from './pages/CatNew'
 import CatEdit from './pages/CatEdit'
-import cats from './mockCats'
 import NotFound from './pages/NotFound'
-import { MemoryRouter } from 'react-router'
+import Header from './components/Header'
 import { Route } from 'react-router-dom'
 Enzyme.configure({ adapter: new Adapter() })
 
-
-
-
-
-describe('app does the rendering', () => {
-  let handleSubmit = jest.fn()
-  it('renders header', () => {
-    const renderedApp = shallow(<App/>)
-    // console.log(renderedApp.find('Header').debug())
-    const renderedHeader = renderedApp.find('Header')
-    expect(renderedHeader.length).toEqual(1);
+describe('when the app renders', () => {
+  const headerComponent = (
+    <Router history={createMemoryHistory()}>
+      <Header/>
+    </Router>
+  )
+  let pathMap = {}
+  beforeAll(() => {
+    const routes = shallow(<App/>)
+    pathMap = routes.find(Route).reduce((pathMap, route) => {
+      const routeProps = route.props()
+      pathMap[routeProps.path] = routeProps.component
+      return pathMap
+    }, {})
+    console.log(pathMap)
+  })
+  it('renders header', async () => {
+    render(headerComponent)
+    const headerContainer = await screen.findAllByTestId('header-container')
+    expect(headerContainer.length).toEqual(1)
   })
   it('provides a route/ to the home component', () => {
     const renderedApp = shallow(<App/>)
     const renderedHomeRoute = renderedApp.find('[path="/"]')
-    // console.log(renderedHomeRoute.props())
     expect(renderedHomeRoute.props().component).toEqual(Home);
   })
-  it('provides a route/catindex to the CatIndex component', () => {
-    const renderedApp = shallow(<App/>)
-    const renderedCatIndexRoute = renderedApp.find('[path="/catindex"]')
-    expect(renderedCatIndexRoute.props().render()).toEqual(<CatIndex cats={cats}/>);
+  it('provides a route/catindex to the CatIndex component', async () => {
+    expect(pathMap['/catindex']).toBe(CatIndex)
   })
   it('provides a route/catshow/:id to the CatShow component', () => {
-    const renderedApp = shallow(<App/>)
-    const renderedCatShowRoute = renderedApp.find('[path="/catshow/:id"]')
-    expect(renderedCatShowRoute.props().render()).toEqual(<NotFound />);
+    expect(pathMap['/catshow/:id']).toBe(CatShow)
   })
   it('provides a route/catnew to the CatNew component', () => {
     const renderedApp = shallow(<App/>)
@@ -54,15 +57,9 @@ describe('app does the rendering', () => {
     const renderedCatEditRoute = renderedApp.find('[path="/catedit/:id"]')
     expect(renderedCatEditRoute.props().component).toEqual(CatEdit);
   })
-  // it('provides a route/notfound to the NotFound component', () => {
-  //   const component = mount(
-  //     <MemoryRouter initialEntries={['/undefined']}>
-  //       <App/>
-  //     </MemoryRouter>
-  //   )
-  //   expect(component.find(NotFound)).toHaveLength(1)
-  // })
-
+  it('provides a route/notfound to the NotFound component', () => {
+    expect(pathMap['undefined']).toBe(NotFound)
+  })
 });
 
 
