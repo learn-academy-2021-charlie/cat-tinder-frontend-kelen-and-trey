@@ -5,6 +5,7 @@ import {
   Container
 } from '@material-ui/core'
 import AppContext from '../context/AppContext'
+import { withRouter } from 'react-router-dom'
 
 const useStyles = theme => ({
   listContainer: {
@@ -16,7 +17,7 @@ const useStyles = theme => ({
     width: '100%',
   },
 });
-const CatIndex = ({classes}) => {
+const CatIndex = ({history, classes}) => {
   const appContext = useContext(AppContext)
   const cats = appContext.cats
   return(
@@ -29,4 +30,4 @@ const CatIndex = ({classes}) => {
   )
 }
 
-export default withStyles(useStyles) (CatIndex)
+export default withStyles(useStyles)(withRouter(CatIndex))
