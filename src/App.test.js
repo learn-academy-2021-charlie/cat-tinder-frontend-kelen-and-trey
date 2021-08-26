@@ -1,6 +1,5 @@
 import {render, screen} from '@testing-library/react'
 import {createMemoryHistory} from 'history'
-import { MemoryRouter } from 'react-router-dom'
 import {Router} from 'react-router-dom'
 import React from 'react'
 import Enzyme, { shallow } from 'enzyme'

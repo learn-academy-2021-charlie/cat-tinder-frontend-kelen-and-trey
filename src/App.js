@@ -40,16 +40,6 @@ class App extends Component{
             <Switch>
               <Route exact path='/' component={Home} />
               <Route path='/catindex' component={CatIndex}/>
-              {/* <Route path='/catshow/:id' render={(props) => { */}
-              {/*   if(props){ */}
-              {/*     let id = props.match.params.id */}
-              {/*     let cat = cats.find(cat => cat.id === +id) */}
-              {/*     return( */}
-              {/*       <CatShow cat={cat}/> */}
-              {/*     ) */}
-              {/*   } else { */}
-              {/*     return <NotFound />} */}
-              {/* }}/> */}
               <Route path='/catshow/:id' component={CatShow}/>
               <Route path='/catnew' render={() => {
                 return(
