@@ -2,7 +2,7 @@
 // import {createMemoryHistory} from 'history'
 // import {Router} from 'react-router-dom'
 import React from 'react'
-import Enzyme, { mount, shallow } from 'enzyme'
+import Enzyme, { shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import App from './App';
 import Home from './pages/Home'
@@ -14,6 +14,8 @@ import cats from './mockCats'
 import NotFound from './pages/NotFound'
 import { MemoryRouter } from 'react-router'
 import { Route } from 'react-router-dom'
+// import { render } from '@testing-library/react'
+// import AppContext from './context/AppContext'
 Enzyme.configure({ adapter: new Adapter() })
 
 
@@ -21,7 +23,6 @@ Enzyme.configure({ adapter: new Adapter() })
 
 
 describe('app does the rendering', () => {
-  let handleSubmit = jest.fn()
   it('renders header', () => {
     const renderedApp = shallow(<App/>)
     // console.log(renderedApp.find('Header').debug())
@@ -35,9 +36,14 @@ describe('app does the rendering', () => {
     expect(renderedHomeRoute.props().component).toEqual(Home);
   })
   it('provides a route/catindex to the CatIndex component', () => {
+    // const component = (
+    //   <AppContext.Provider value={{cats}}>
+    //     <CatIndex/>
+    //   </AppContext.Provider>
+    // )
     const renderedApp = shallow(<App/>)
     const renderedCatIndexRoute = renderedApp.find('[path="/catindex"]')
-    expect(renderedCatIndexRoute.props().render()).toEqual(<CatIndex cats={cats}/>);
+    expect(renderedCatIndexRoute.props().component).toEqual(<CatIndex/>);
   })
   it('provides a route/catshow/:id to the CatShow component', () => {
     const renderedApp = shallow(<App/>)

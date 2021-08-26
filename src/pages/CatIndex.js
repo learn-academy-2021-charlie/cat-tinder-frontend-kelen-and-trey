@@ -1,21 +1,24 @@
-import React, { Component } from 'react'
+import React, { useContext, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles';
-import  catImage from '../assets/cat.jpeg' 
-import { 
-  Card, 
+import  catImage from '../assets/cat.jpeg'
+import {
+  Card,
   CardActionArea,
-  CardActions, 
-  CardMedia, 
-  CardContent, 
-  Typography, 
-  Button,
+  CardActions,
+  CardMedia,
+  CardContent,
+  Typography,
+  // Button,
   Container
 } from '@material-ui/core'
+import AppContext from '../context/AppContext'
+
 const useStyles = theme => ({
   root: {
       marginLeft: 10,
-      marginRight: 10
+      marginRight: 10,
+    justifySelf: 'center'
   },
   heading: {
       fontSize: "1rem",
@@ -25,34 +28,33 @@ const useStyles = theme => ({
     maxWidth: "500px",
     display: "flex",
     justifyContent: "center",
-    flexFlow: "column wrap",
+    flexFlow: "row",
+    alignContent: 'space-around'
+  },
+  media: {
+    height: 250,
+    width: 400,
+  },
+  catContainer: {
+    justifySelf: 'flex-start'
   }
 });
-class CatIndex extends Component{
-  constructor(props){
-    super(props);
-    this.state = {image: ""};
-  }
-  componentDidMount(){
-    fetch("https://images.unsplash.com/photo-1573865526739-10659fec78a5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=716&q=80")
-        .then(response => response.json())
-        .then(json => this.setState({ image: json.data }));
-  }
-  render(){
-    const {classes} = this.props;
-    const { cats } = this.props
-    return(
-      <Container className = {classes.listContainer} >
-        <h2>CatIndex component</h2>
-        <img src={catImage}/>
-        {cats && cats.map(cat => {
+const CatIndex = ({classes}) => {
+  const appContext = useContext(AppContext)
+  const cats = appContext.cats
+  return(
+    <Container>
+      <h2>CatIndex component</h2>
+      <Container className={classes.listContainer}>
+        {cats && cats.map((cat, i) => {
           return(
-            <Container maxWidth="sm">
+            <Container maxWidth="sm" data-testid= 'cat-profile' key={i} className={classes.catContainer}>
             <Card className={classes.root}>
               <CardActionArea>
                 <CardMedia
+                  component="img"
                   className={classes.media}
-                  image= {catImage}
+                  src={catImage}
                   title="Cute Orange Cat"
                 />
                 <CardContent>
@@ -60,7 +62,7 @@ class CatIndex extends Component{
                     {cat.name}
                   </Typography>
                   <Typography variant="body2" color="textSecondary" component="p">
-                    Enjoys {cat.enjoys} 
+                    Enjoys {cat.enjoys}
                   </Typography>
                   <Typography>
                   {cat.name} is {cat.age} years old
@@ -68,12 +70,13 @@ class CatIndex extends Component{
                 </CardContent>
               </CardActionArea>
               <CardActions>
-                <Button size="small" color="primary">
-                  Learn More
-                </Button>
+              <NavLink to={`/catShow/${cat.id}`}>Show {cat.name}'s details</NavLink>
+                {/* <Button size="small" color="primary"> */}
+                {/*   Learn More */}
+                {/* </Button> */}
               </CardActions>
             </Card>
-            
+
             {/* <div key={cat.id}>
               <NavLink to={`/catShow/${cat.id}`}>Show {cat.name}'s details</NavLink>
               <h2>{cat.name} is {cat.age} years old.</h2>
@@ -83,8 +86,8 @@ class CatIndex extends Component{
           )
         }) }
       </Container>
-    )
-  }
+    </Container>
+  )
 }
 
 // export default CatIndex
