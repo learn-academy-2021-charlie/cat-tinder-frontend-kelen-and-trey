@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { withStyles } from '@material-ui/core/styles';
 import CatCard from '../components/CatCard'
 import {
+  Grid,
   Container
 } from '@material-ui/core'
 import AppContext from '../context/AppContext'
@@ -10,9 +11,9 @@ import { withRouter } from 'react-router-dom'
 const useStyles = theme => ({
   listContainer: {
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "space-around",
     flexFlow: "row wrap",
-    alignContent: 'space-around',
+    // alignContent: 'space-around',
     paddingTop: '50px',
     width: '100%',
   },
@@ -22,10 +23,12 @@ const CatIndex = ({history, classes}) => {
   const cats = appContext.state.cats
   return(
     <Container>
-      <Container className={classes.listContainer} data-testid='index-container'>
+      {/* <Container className={classes.listContainer} data-testid='index-container'> */}
+      <Grid container justifyContent="center" spacing= {1} >
         {cats && cats.map((cat, i) => <CatCard id={cat.id} key={i} name={cat.name} index={i} age={cat.age} enjoys={cat.enjoys}/>
         ) }
-      </Container>
+      </Grid>
+      {/* </Container> */}
     </Container>
   )
 }

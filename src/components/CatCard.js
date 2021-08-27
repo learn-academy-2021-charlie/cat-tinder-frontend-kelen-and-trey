@@ -16,21 +16,23 @@ const useStyles = theme => ({
   root: {
     marginLeft: 10,
     marginRight: 10,
-    justifySelf: 'center'
+    // justifySelf: 'center'
   },
   heading: {
     fontSize: "1rem",
     fontWeight: theme.typography.fontWeightRegular
   },
   media: {
-    height: 250,
-    width: 400,
+    // justifySelf: 'center',
+    height: '50%',
+    width: '50%',
   },
   catContainer: {
-    justifySelf: 'flex-start',
-    width: '30%',
+    display: 'flex',
+    // justifySelf: 'flex-start',
+    width: '40%',
     alignSelf: 'left',
-    paddingBottom: '50px'
+    paddingBottom: '10px'
   }
 });
 

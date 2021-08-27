@@ -4,7 +4,6 @@ import {Router} from 'react-router-dom'
 import React from 'react'
 import Enzyme, { shallow } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
-import App from './App';
 import Home from './pages/Home'
 import CatIndex from './pages/CatIndex'
 import CatShow from './pages/CatShow'
@@ -13,6 +12,7 @@ import CatEdit from './pages/CatEdit'
 import NotFound from './pages/NotFound'
 import Header from './components/Header'
 import { Route } from 'react-router-dom'
+import AppRouter from './components/AppRouter'
 Enzyme.configure({ adapter: new Adapter() })
 
 describe('when the app renders', () => {
@@ -23,7 +23,7 @@ describe('when the app renders', () => {
   )
   let pathMap = {}
   beforeAll(() => {
-    const routes = shallow(<App/>)
+    const routes = shallow(<AppRouter/>)
     pathMap = routes.find(Route).reduce((pathMap, route) => {
       const routeProps = route.props()
       pathMap[routeProps.path] = routeProps.component
@@ -37,7 +37,7 @@ describe('when the app renders', () => {
     expect(headerContainer.length).toEqual(1)
   })
   it('provides a route/ to the home component', () => {
-    const renderedApp = shallow(<App/>)
+    const renderedApp = shallow(<AppRouter/>)
     const renderedHomeRoute = renderedApp.find('[path="/"]')
     expect(renderedHomeRoute.props().component).toEqual(Home);
   })
@@ -48,12 +48,10 @@ describe('when the app renders', () => {
     expect(pathMap['/catshow/:id']).toBe(CatShow)
   })
   it('provides a route/catnew to the CatNew component', () => {
-    const renderedApp = shallow(<App/>)
-    const renderedCatNewRoute = renderedApp.find('[path="/catnew"]')
-    expect(renderedCatNewRoute.props().render()).toEqual(<CatNew handleSubmit={expect.any(Function)}/>);
+    expect(pathMap['/catnew']).toBe(CatNew)
   })
   it('provides a route/catedit/:id to the CatEdit component', () => {
-    const renderedApp = shallow(<App/>)
+    const renderedApp = shallow(<AppRouter/>)
     const renderedCatEditRoute = renderedApp.find('[path="/catedit/:id"]')
     expect(renderedCatEditRoute.props().component).toEqual(CatEdit);
   })
