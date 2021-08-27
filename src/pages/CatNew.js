@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Button, Form, Label, Input, FormGroup } from 'reactstrap'
 import { Redirect } from 'react-router-dom'
+import AppContext from '../context/AppContext'
 
 const CatNew = props => {
+  const appContext = useContext(AppContext)
   const [cat, setCat] = useState({
     name: '',
     age: '',
@@ -17,7 +19,7 @@ const CatNew = props => {
   }
 
   const submitCat = () => {
-    props.handleSubmit(cat)
+    appContext.handleNewCat(cat)
     setSubmitted(true)
   }
 
