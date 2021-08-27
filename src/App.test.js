@@ -41,7 +41,7 @@ describe('when the app renders', () => {
     const renderedHomeRoute = renderedApp.find('[path="/"]')
     expect(renderedHomeRoute.props().component).toEqual(Home);
   })
-  it('provides a route/catindex to the CatIndex component', () => {
+  it('provides a route/catindex to the CatIndex component', async () => {
     expect(pathMap['/catindex']).toBe(CatIndex)
   })
   it('provides a route/catshow/:id to the CatShow component', () => {
