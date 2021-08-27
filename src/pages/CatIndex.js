@@ -10,6 +10,7 @@ import { withRouter } from 'react-router-dom'
 
 const useStyles = theme => ({
   listContainer: {
+    backgroundColor: "grey",
     display: "flex",
     justifyContent: "space-around",
     flexFlow: "row wrap",
@@ -24,7 +25,7 @@ const CatIndex = ({history, classes}) => {
   return(
     <Container>
       {/* <Container className={classes.listContainer} data-testid='index-container'> */}
-      <Grid container justifyContent="center" spacing= {1} >
+      <Grid container justifyContent="center" spacing= {0} >
         {cats && cats.map((cat, i) => <CatCard id={cat.id} key={i} name={cat.name} index={i} age={cat.age} enjoys={cat.enjoys}/>
         ) }
       </Grid>

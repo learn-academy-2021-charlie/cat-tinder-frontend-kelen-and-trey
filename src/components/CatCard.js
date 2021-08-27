@@ -9,7 +9,7 @@ import {
   CardMedia,
   CardContent,
   Typography,
-  Container
+  Grid
 } from '@material-ui/core'
 
 const useStyles = theme => ({
@@ -24,21 +24,22 @@ const useStyles = theme => ({
   },
   media: {
     // justifySelf: 'center',
-    height: '50%',
-    width: '50%',
+     maxHeight: '400px',
+    // maxwidth: '60%',
   },
   catContainer: {
     display: 'flex',
     // justifySelf: 'flex-start',
     width: '40%',
     alignSelf: 'left',
-    paddingBottom: '10px'
+    paddingBottom: '10px',
+    paddingTop:'10px'
   }
 });
 
 const CatCard = ({ classes, index, name, age, enjoys, id }) => {
   return(
-    <Container maxWidth="sm" data-testid='cat-profile' key={index} className={classes.catContainer}>
+    <Grid maxWidth="sm" data-testid='cat-profile' key={index} className={classes.catContainer}>
       <Card className={classes.root}>
         <CardActionArea>
           <CardMedia
@@ -63,7 +64,7 @@ const CatCard = ({ classes, index, name, age, enjoys, id }) => {
         <NavLink to={`/catShow/${id}`}>Show {name}'s details</NavLink>
         </CardActions>
       </Card>
-    </Container>
+    </Grid>
   )
 }
 export default withStyles(useStyles)(CatCard)

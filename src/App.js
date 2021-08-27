@@ -2,8 +2,11 @@ import './App.css';
 import React, { Component } from 'react'
 import AppContext from './context/AppContext'
 import AppRouter from './components/AppRouter'
+import {withStyles} from '@material-ui/core/styles'
 
-
+const useStyles = theme => ({
+  backgroundColor: theme.backgroundColor,
+})
 class App extends Component{
   constructor(props){
     super(props)
@@ -97,5 +100,5 @@ class App extends Component{
     )
   }
 }
+export default withStyles(useStyles)(App)
 
-export default App;
