@@ -39,7 +39,7 @@ const useStyles = theme => ({
 
 const CatCard = ({ classes, index, name, age, enjoys, id }) => {
   return(
-    <Grid maxWidth="sm" data-testid='cat-profile' key={index} className={classes.catContainer}>
+    <Grid data-testid='cat-profile' key={index} className={classes.catContainer}>
       <Card className={classes.root}>
         <CardActionArea>
           <CardMedia

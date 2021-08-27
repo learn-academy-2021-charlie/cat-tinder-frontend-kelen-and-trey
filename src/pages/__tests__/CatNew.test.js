@@ -5,18 +5,22 @@ import CatNew from '../CatNew'
 import { render, fireEvent } from '@testing-library/react'
 import { createMemoryHistory } from 'history'
 import { Router } from 'react-router-dom'
+import AppContext from '../../context/AppContext'
 
 Enzyme.configure({ adapter: new Adapter() })
 
 describe('new cat form', () => {
-  let renderedCatNew, mockSubmit, catNewComponent, submitButton, enjoysInput, ageInput, nameInput
+  let renderedCatNew, mockSubmit, catNewComponent, submitButton, enjoysInput, ageInput, nameInput, mockHandleNewCat
   beforeEach(() => {
     mockSubmit = jest.fn()
+    mockHandleNewCat = jest.fn()
     renderedCatNew = shallow(<CatNew handleSubmit={mockSubmit}/> )
     catNewComponent = render(
-      <Router history={createMemoryHistory()}>
-        <CatNew handleSubmit={mockSubmit}/>
-      </Router>
+      <AppContext.Provider value={{handleNewCat: mockHandleNewCat}}>
+        <Router history={createMemoryHistory()}>
+          <CatNew handleSubmit={mockSubmit}/>
+        </Router>
+      </AppContext.Provider>
     )
     submitButton = catNewComponent.getByTestId('submit-button')
     enjoysInput = catNewComponent.getByTestId('enjoys-input')
@@ -79,6 +83,6 @@ describe('new cat form', () => {
     fireEvent.change(ageInput, ageEvent)
     fireEvent.change(enjoysInput, enjoysEvent)
     fireEvent.click(submitButton)
-    expect(mockSubmit).toHaveBeenCalledTimes(1);
+    expect(mockHandleNewCat).toHaveBeenCalledTimes(1);
   });
 })
