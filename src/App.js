@@ -15,13 +15,14 @@ import cats from './mockCats'
 import Header from './components/Header.js'
 import Footer from './components/Footer.js'
 import AppContext from './context/AppContext'
+import { getContrastRatio } from '@material-ui/core';
 
 
 class App extends Component{
   constructor(props){
     super(props)
     this.state = {
-      cats,
+      cats: [],
     }
   }
 
@@ -31,12 +32,41 @@ class App extends Component{
     })
   }
 
-  handleNewCat = (newCat, index) => {
-    let cats = this.state.cats
-    cats[index] = newCat
-    this.setState({
-      cats
+  handleNewCat = (newCat) => {
+    fetch("http://localhost:3000/cats", {
+      body:JSON.stringify(newCat),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "POST"
     })
+    .then(response => {
+      if (response.status === 422){
+        alert("Warning Invalid Parameter for Cat")
+      }
+      return response.json();
+    })
+    .then(data => {
+      this.getCats()
+    })
+    .catch(err => {console.log(err)});
+  }
+
+  getCats = () => {
+    fetch("http://localhost:3000/cats")
+    .then(response => {
+      return response.json()
+    }) 
+    .then(data => {
+      this.setState({cats:data})
+    })
+    .catch(error => {
+      console.log("index errors: ", error)
+    })
+  }
+  
+  componentDidMount(){
+    this.getCats()
   }
 
   render(){
